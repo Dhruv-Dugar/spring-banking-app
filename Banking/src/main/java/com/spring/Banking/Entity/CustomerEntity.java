@@ -35,4 +35,6 @@ public class CustomerEntity {
 	@Enumerated(EnumType.STRING)
 	private Bank bankName;
 
+	// TODO add List<Transactions> post it is made by the other pppl, so we can have that
+
 }
