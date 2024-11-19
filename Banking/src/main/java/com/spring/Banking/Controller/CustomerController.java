@@ -3,10 +3,13 @@ package com.spring.Banking.Controller;
 
 import com.spring.Banking.Entity.CustomerEntity;
 import com.spring.Banking.Service.CustomerService;
+import com.spring.Banking.Service.CustomerServiceImplementation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/customer")
@@ -22,8 +25,13 @@ public class CustomerController {
 		this.customerService = customerService;
 	}
 
+	@GetMapping
+	public List<CustomerEntity> getAllCustomers(){
+		return customerService.getAllCustomers();
+	}
+
 	@GetMapping("/{id}")
-	public CustomerEntity getCustomerById(@PathVariable("id") long customerId){
+	public CustomerEntity getCustomerById(@PathVariable("id") String customerId){
 		logger.info("Fetching customer with ID: {}", customerId);
 		return customerService.getCustomerById(customerId);
 	}
@@ -35,9 +43,9 @@ public class CustomerController {
 	}
 
 	@PutMapping("/{id}")
-	public CustomerEntity updateCustomer(@RequestBody CustomerEntity customer, @PathVariable long    customerId){
+	public CustomerEntity updateCustomer(@RequestBody CustomerEntity customer, @PathVariable String customerId){
 		logger.info("Customer with id {} updated with new details as {}", customerId, customer);
-		return customerService.updateCustomer(customer, customerId);
+		return customerService.updateCustomer(customerId, customer);
 	}
 
 

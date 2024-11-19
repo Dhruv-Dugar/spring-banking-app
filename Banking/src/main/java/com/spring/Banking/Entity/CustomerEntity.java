@@ -22,7 +22,7 @@ public class CustomerEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="customer-id")
-	private long customerId;
+	private String customerId;
 
 	private String firstName;
 	private String lastName;
@@ -40,6 +40,6 @@ public class CustomerEntity {
 
 	// TODO add List<Transactions> post it is made by the other pppl, so we can have that
 
-	
+
 
 }
