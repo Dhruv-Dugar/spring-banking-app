@@ -1,4 +1,5 @@
 package com.spring.Banking.Controller;
+import com.spring.Banking.Entity.TransactionEntity;
 import com.spring.Banking.Service.TransactionService;
 //import jakarta.transaction.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
+//import java.util.String;
 
 @RestController
 @RequestMapping("/api/transactions")
@@ -17,9 +18,9 @@ public class TransactionController {
 
     // Create a new transaction
     @PostMapping("/create")
-    public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
+    public ResponseEntity<TransactionEntity> createTransaction(@RequestBody TransactionEntity transaction) {
         try {
-            Transaction createdTransaction = transactionService.createTransaction(transaction);
+            TransactionEntity createdTransaction = transactionService.createTransaction(transaction);
             return ResponseEntity.ok(createdTransaction);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
@@ -28,15 +29,15 @@ public class TransactionController {
 
     // Get all transactions
     @GetMapping("/all")
-    public ResponseEntity<List<Transaction>> getAllTransactions() {
-        List<Transaction> transactions = transactionService.getAllTransactions();
+    public ResponseEntity<List<TransactionEntity>> getAllTransactions() {
+        List<TransactionEntity> transactions = transactionService.getAllTransactions();
         return ResponseEntity.ok(transactions);
     }
 
     // Get a single transaction by transactionId
     @GetMapping("/{transactionId}")
-    public ResponseEntity<Transaction> getTransaction(@PathVariable UUID transactionId) {
-        Transaction transaction = transactionService.getTransactionById(transactionId);
+    public ResponseEntity<TransactionEntity> getTransaction(@PathVariable String transactionId) {
+        TransactionEntity transaction = transactionService.getTransactionById(transactionId);
         if (transaction != null) {
             return ResponseEntity.ok(transaction);
         } else {
@@ -46,9 +47,9 @@ public class TransactionController {
 
     // Update an existing transaction
     @PutMapping("/update/{transactionId}")
-    public ResponseEntity<Transaction> updateTransaction(
-            @PathVariable UUID transactionId, @RequestBody Transaction transaction) {
-        Transaction updatedTransaction = transactionService.updateTransaction(transactionId, transaction);
+    public ResponseEntity<TransactionEntity> updateTransaction(
+            @PathVariable String transactionId, @RequestBody TransactionEntity transaction) {
+        TransactionEntity updatedTransaction = transactionService.updateTransaction(transactionId, transaction);
         if (updatedTransaction != null) {
             return ResponseEntity.ok(updatedTransaction);
         } else {
@@ -58,7 +59,7 @@ public class TransactionController {
 
     // Delete a transaction by transactionId
     @DeleteMapping("/delete/{transactionId}")
-    public ResponseEntity<Void> deleteTransaction(@PathVariable UUID transactionId) {
+    public ResponseEntity<Void> deleteTransaction(@PathVariable String transactionId) {
         boolean deleted = transactionService.deleteTransaction(transactionId);
         if (deleted) {
             return ResponseEntity.noContent().build();

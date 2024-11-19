@@ -13,49 +13,50 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Data
+//@Builder
 public class TransactionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private long transactionId;
-    private long senderUuid;
-    private long receiverUuid;
+    private String transactionId;
+    private String senderUuid;
+    private String receiverUuid;
     private long amount;
 
-    public TransactionEntity(long senderUuid, long transactionId, long receiverUuid, long amount) {
-        this.senderUuid = senderUuid;
+    public TransactionEntity(String transactionId, String senderUuid, String receiverUuid, long amount) {
         this.transactionId = transactionId;
+        this.senderUuid = senderUuid;
         this.receiverUuid = receiverUuid;
         this.amount = amount;
     }
-//    private String status;
+
+    //    private String status;
 
 
-    public long getTransactionId() {
+    public String getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(long transactionId) {
+    public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
 
-    public long getSenderUuid() {
+    public String getSenderUuid() {
         return senderUuid;
     }
 
-    public void setSenderUuid(long senderUuid) {
+    public void setSenderUuid(String senderUuid) {
         this.senderUuid = senderUuid;
     }
 
-    public long getReceiverUuid() {
+    public String getReceiverUuid() {
         return receiverUuid;
     }
 
-    public void setReceiverUuid(long receiverUuid) {
+    public void setReceiverUuid(String receiverUuid) {
         this.receiverUuid = receiverUuid;
     }
 

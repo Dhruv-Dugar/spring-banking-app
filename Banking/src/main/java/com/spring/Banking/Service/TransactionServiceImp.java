@@ -16,7 +16,7 @@ public class TransactionServiceImp implements TransactionService{
 
     // Create a new transaction
     public TransactionEntity createTransaction(TransactionEntity transaction) {
-        transaction.setTransactionId(long.randomUUID()); // Ensure a new UUID for transaction
+        transaction.setTransactionId(UUID.randomUUID().toString()); // Ensure a new UUID for transaction
         return transactionRepository.save(transaction);
     }
 
@@ -25,15 +25,17 @@ public class TransactionServiceImp implements TransactionService{
         return transactionRepository.findAll();
     }
 
+
+
     // Get a transaction by transactionId
-    public TransactionEntity getTransactionById(long transactionId) {
+    public TransactionEntity getTransactionById(String transactionId) {
         Optional<TransactionEntity> transaction = transactionRepository.findByTransactionId(transactionId);
         return transaction.orElse(null);
     }
 
     // Update an existing transaction
     @Transactional
-    public TransactionEntity updateTransaction(long transactionId, TransactionEntity updatedTransaction) {
+    public TransactionEntity updateTransaction(String transactionId, TransactionEntity updatedTransaction) {
         Optional<TransactionEntity> existingTransaction = transactionRepository.findByTransactionId(transactionId);
 
         if (existingTransaction.isPresent()) {
@@ -53,7 +55,7 @@ public class TransactionServiceImp implements TransactionService{
 
     // Delete a transaction by transactionId
     @Transactional
-    public boolean deleteTransaction(long transactionId) {
+    public boolean deleteTransaction(String transactionId) {
         Optional<TransactionEntity> transaction = transactionRepository.findByTransactionId(transactionId);
         if (transaction.isPresent()) {
             transactionRepository.delete(transaction.get());
