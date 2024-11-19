@@ -30,7 +30,7 @@ public class CustomerServiceImplementation implements CustomerService {
     @Override
     public CustomerEntity updateCustomer(String id, CustomerEntity customerDetails) {
         // Find the customer by ID, if found, update and save it, otherwise return null
-        CustomerEntity customer = customerRepository.findById(id).orElse(null);
+        CustomerEntity customer = customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException("Customer not found with id" + id));
 
         if (customer != null) {
             customer.setFirstName(customerDetails.getFirstName());
