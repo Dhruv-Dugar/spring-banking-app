@@ -1,12 +1,19 @@
 package com.spring.Banking.Service;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.spring.Banking.Entity.CustomerEntity;
 
-@SpringBootApplication
-public class CustomerService {
+import java.util.List;
 
-    public static void main(String[] args) {
-        SpringApplication.run(CustomerService.class, args);
-    }
+import com.spring.Banking.Entity.CustomerEntity;
+import java.util.Optional;
+
+public interface CustomerService {
+
+    CustomerEntity saveCustomer(CustomerEntity customer);
+
+    List<CustomerEntity> getAllCustomers();
+
+    CustomerEntity updateCustomer(Long id, CustomerEntity customer);
+
+    void deleteCustomer(Long id);
 }
