@@ -35,6 +35,11 @@ public class CustomerEntity {
 	@Enumerated(EnumType.STRING)
 	private Bank bankName;
 
+	private long balance;
+	// balance can go negative as we allow overdraft functionality, did not keep a @Min with 0
+
 	// TODO add List<Transactions> post it is made by the other pppl, so we can have that
+
+	
 
 }
