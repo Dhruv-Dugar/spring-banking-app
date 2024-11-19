@@ -1,6 +1,7 @@
 package com.spring.Banking.Service;
 
 import com.spring.Banking.Entity.CustomerEntity;
+import com.spring.Banking.Error.CustomerNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import com.spring.Banking.Repository.CustomerRepository;
@@ -19,10 +20,6 @@ public class CustomerServiceImplementation implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    @Override
-    public CustomerEntity saveCustomer(CustomerEntity customer) {
-        return customerRepository.save(customer);  // No changes, assuming you always want to save and return the saved entity
-    }
 
     @Override
     public List<CustomerEntity> getAllCustomers() {
@@ -31,7 +28,7 @@ public class CustomerServiceImplementation implements CustomerService {
     }
 
     @Override
-    public CustomerEntity updateCustomer(Long id, CustomerEntity customerDetails) {
+    public CustomerEntity updateCustomer(long id, CustomerEntity customerDetails) {
         // Find the customer by ID, if found, update and save it, otherwise return null
         CustomerEntity customer = customerRepository.findById(id).orElse(null);
 
@@ -46,14 +43,13 @@ public class CustomerServiceImplementation implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(Long id) {
-        // Find the customer by ID, if found, delete it, otherwise do nothing
-        CustomerEntity customer = customerRepository.findById(id).orElse(null);
-
-        if (customer != null) {
-            customerRepository.delete(customer);
-        }
+    public CustomerEntity getCustomerById(long id){
+//        CustomerEntity
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found with given id " + id));
     }
+
+
 
     public CustomerEntity getCustomerById(Long customerId) {
         // Return the customer or null if not found

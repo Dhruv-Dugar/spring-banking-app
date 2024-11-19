@@ -9,11 +9,13 @@ import java.util.Optional;
 
 public interface CustomerService {
 
-    CustomerEntity saveCustomer(CustomerEntity customer);
+    CustomerEntity createCustomer(CustomerEntity customer);
 
-    List<CustomerEntity> getAllCustomers();
+    List<CustomerEntity> getAllCustomers(); //done
 
-    CustomerEntity updateCustomer(Long id, CustomerEntity customer);
+    CustomerEntity getCustomerById(long customerId);
 
-    void deleteCustomer(Long id);
+    CustomerEntity updateCustomer(long id, CustomerEntity customer);
+
+//    void deleteCustomer(Long id);
 }
