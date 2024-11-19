@@ -36,6 +36,8 @@ public class WebSecurityConfig {
             "/resendVerifiytoken**",
             "/login",
             "/error",
+            "/api/customer/**",
+            "/api/transactions/**",
             "/api-docs",
             "/api-docs/**",
             "/swagger-ui/**",
