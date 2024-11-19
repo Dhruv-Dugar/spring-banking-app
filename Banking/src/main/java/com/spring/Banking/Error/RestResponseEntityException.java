@@ -1,7 +1,7 @@
 package com.spring.Banking.Error;
 
 
-import com.spring.Banking.Entity.ErrorMessage;
+import com.spring.Banking.Model.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
