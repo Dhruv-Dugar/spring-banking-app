@@ -1,4 +1,19 @@
 package com.spring.Banking.Service;
 
-public class CustomerServiceImplementation {
+import com.spring.Banking.Entity.CustomerEntity;
+
+import java.util.List;
+
+import com.spring.Banking.Entity.CustomerEntity;
+import java.util.Optional;
+
+public interface CustomerServiceImplementation {
+
+    CustomerEntity saveCustomer(CustomerEntity customer);
+
+    List<CustomerEntity> getAllCustomers();
+
+    CustomerEntity updateCustomer(Long id, CustomerEntity customer);
+
+    void deleteCustomer(Long id);
 }
