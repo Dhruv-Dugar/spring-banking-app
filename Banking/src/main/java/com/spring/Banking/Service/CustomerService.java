@@ -13,9 +13,9 @@ public interface CustomerService {
 
     List<CustomerEntity> getAllCustomers(); //done
 
-    CustomerEntity getCustomerById(long customerId);
+    CustomerEntity getCustomerById(String customerId);
 
-    CustomerEntity updateCustomer(long id, CustomerEntity customer);
+    CustomerEntity updateCustomer(String id, CustomerEntity customer);
 
 //    void deleteCustomer(Long id);
 }

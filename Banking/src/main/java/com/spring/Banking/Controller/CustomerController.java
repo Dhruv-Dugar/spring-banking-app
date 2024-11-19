@@ -31,7 +31,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/{id}")
-	public CustomerEntity getCustomerById(@PathVariable("id") long customerId){
+	public CustomerEntity getCustomerById(@PathVariable("id") String customerId){
 		logger.info("Fetching customer with ID: {}", customerId);
 		return customerService.getCustomerById(customerId);
 	}
@@ -43,7 +43,7 @@ public class CustomerController {
 	}
 
 	@PutMapping("/{id}")
-	public CustomerEntity updateCustomer(@RequestBody CustomerEntity customer, @PathVariable long customerId){
+	public CustomerEntity updateCustomer(@RequestBody CustomerEntity customer, @PathVariable String customerId){
 		logger.info("Customer with id {} updated with new details as {}", customerId, customer);
 		return customerService.updateCustomer(customerId, customer);
 	}

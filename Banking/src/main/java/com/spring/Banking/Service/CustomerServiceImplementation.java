@@ -28,7 +28,7 @@ public class CustomerServiceImplementation implements CustomerService {
     }
 
     @Override
-    public CustomerEntity updateCustomer(long id, CustomerEntity customerDetails) {
+    public CustomerEntity updateCustomer(String id, CustomerEntity customerDetails) {
         // Find the customer by ID, if found, update and save it, otherwise return null
         CustomerEntity customer = customerRepository.findById(id).orElse(null);
 
@@ -43,18 +43,12 @@ public class CustomerServiceImplementation implements CustomerService {
     }
 
     @Override
-    public CustomerEntity getCustomerById(long id){
+    public CustomerEntity getCustomerById(String id){
 //        CustomerEntity
         return customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerNotFoundException("Customer not found with given id " + id));
     }
-
-
-
-    public CustomerEntity getCustomerById(Long customerId) {
-        // Return the customer or null if not found
-        return customerRepository.findById(customerId).orElse(null);
-    }
+    
 
     public CustomerEntity createCustomer(CustomerEntity customer) {
         return customerRepository.save(customer);  // Save the new customer
