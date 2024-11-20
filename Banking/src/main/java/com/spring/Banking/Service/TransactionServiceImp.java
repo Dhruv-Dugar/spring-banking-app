@@ -23,7 +23,7 @@ public class TransactionServiceImp implements TransactionService{
     // Create a new transaction
     public TransactionEntity createTransaction(TransactionEntity transaction) {
         logger.debug("Creating a new transaction and saving it in the Database");
-        transaction.setTransactionUuid(UUID.randomUUID().toString()); // Ensure a new UUID for transaction
+        transaction.setTransactionId(UUID.randomUUID().toString()); // Ensure a new UUID for transaction
         return transactionRepository.save(transaction);
     }
 
@@ -53,8 +53,8 @@ public class TransactionServiceImp implements TransactionService{
             // Update fields of the transaction (can be customized as needed)
             transaction.setAmount(updatedTransaction.getAmount());
 //            transaction.setstatus(updatedTransaction.getStatus());
-            transaction.setSenderUuid(updatedTransaction.getSenderUuid());
-            transaction.setReceiverUuid(updatedTransaction.getReceiverUuid());
+            transaction.setSenderId(updatedTransaction.getSenderId());
+            transaction.setReceiverId(updatedTransaction.getReceiverId());
 
             return transactionRepository.save(transaction);
         } else {

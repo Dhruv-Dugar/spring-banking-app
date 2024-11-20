@@ -17,15 +17,47 @@ import java.util.UUID;
 @Table(
         name="Transactions",
         uniqueConstraints = @UniqueConstraint(
-                name = "transactionUuid_unique", columnNames = "transaction_uuid"
+                name = "transactionId_unique", columnNames = "transaction_id"
         )
 )
 public class TransactionEntity {
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
+
+    public String getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(String receiverId) {
+        this.receiverId = receiverId;
+    }
+
+    public long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(long amount) {
+        this.amount = amount;
+    }
+
     @Id
-    @Column(name = "transaction_uuid",nullable = false)
-    private String transactionUuid;
-    private String senderUuid;
-    private String receiverUuid;
+    @Column(name = "transaction_id",nullable = false)
+    private String transactionId;
+    private String senderId;
+    private String receiverId;
     private long amount;
 
 }

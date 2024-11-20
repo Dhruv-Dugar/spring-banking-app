@@ -6,10 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class JwtResponse {
+    public JwtResponse(String jwtToken, String message, Boolean success, String email, String role) {
+        this.jwtToken = jwtToken;
+        this.message = message;
+        this.success = success;
+        this.email = email;
+        this.role = role;
+    }
 
     private String jwtToken;
     private String message;

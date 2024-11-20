@@ -38,6 +38,54 @@ public class CustomerEntity {
 	private long balance;
 	// balance can go negative as we allow overdraft functionality, did not keep a @Min with 0
 
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public Bank getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(Bank bankName) {
+		this.bankName = bankName;
+	}
+
+	public long getBalance() {
+		return balance;
+	}
+
+	public void setBalance(long balance) {
+		this.balance = balance;
+	}
+
 	// TODO add List<Transactions> post it is made by the other pppl, so we can have that
 
 

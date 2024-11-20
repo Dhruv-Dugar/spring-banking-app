@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/customer")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CustomerController {
 
 	private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
