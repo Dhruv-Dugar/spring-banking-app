@@ -1,9 +1,6 @@
 package com.spring.Banking.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,16 +10,22 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Builder
+@Table(
+        name="Transactions",
+        uniqueConstraints = @UniqueConstraint(
+                name = "transactionUuid_unique", columnNames = "transaction_uuid"
+        )
+)
 public class TransactionEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String transactionId;
-    private String senderID;
-    private String receiverID;
+    @Column(name = "transaction_uuid",nullable = false)
+    private String transactionUuid;
+    private String senderUuid;
+    private String receiverUuid;
     private long amount;
 
 }

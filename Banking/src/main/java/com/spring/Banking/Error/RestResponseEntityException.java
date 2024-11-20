@@ -18,4 +18,11 @@ public class RestResponseEntityException {
 		return new ErrorMessage(HttpStatus.NOT_FOUND, e.getMessage());
 	}
 
+	@ExceptionHandler(TransactionNotFoundException.class)
+	@ResponseBody
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public ErrorMessage TransactionNotFoundExceptionHandler(TransactionNotFoundException e){
+		return new ErrorMessage(HttpStatus.NOT_FOUND, e.getMessage());
+	}
+
 }

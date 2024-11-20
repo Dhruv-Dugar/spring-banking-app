@@ -1,7 +1,10 @@
 package com.spring.Banking.Controller;
 import com.spring.Banking.Entity.TransactionEntity;
+import com.spring.Banking.Service.CustomerService;
 import com.spring.Banking.Service.TransactionService;
 //import jakarta.transaction.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,25 +16,26 @@ import java.util.List;
 @RequestMapping("/api/transactions")
 public class TransactionController {
 
+    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
+
+    private final TransactionService transactionService;
+
     @Autowired
-    private TransactionService transactionService;
+    public TransactionController(TransactionService transactionService){
+        this.transactionService = transactionService;
+    }
 
     // Create a new transaction
     @PostMapping("/create")
-    public ResponseEntity<TransactionEntity> createTransaction(@RequestBody TransactionEntity transaction) {
-        try {
-            TransactionEntity createdTransaction = transactionService.createTransaction(transaction);
-            return ResponseEntity.ok(createdTransaction);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+    public TransactionEntity createTransaction(@RequestBody TransactionEntity transaction) {
+        logger.info("Creating transaction with the following details: {}", transaction);
+        return transactionService.createTransaction(transaction);
     }
 
     // Get all transactions
     @GetMapping("/all")
-    public ResponseEntity<List<TransactionEntity>> getAllTransactions() {
-        List<TransactionEntity> transactions = transactionService.getAllTransactions();
-        return ResponseEntity.ok(transactions);
+    public List<TransactionEntity> getAllTransactions() {
+        return transactionService.getAllTransactions();
     }
 
     // Get a single transaction by transactionId
@@ -47,25 +51,17 @@ public class TransactionController {
 
     // Update an existing transaction
     @PutMapping("/update/{transactionId}")
-    public ResponseEntity<TransactionEntity> updateTransaction(
+    public TransactionEntity updateTransaction(
             @PathVariable String transactionId, @RequestBody TransactionEntity transaction) {
-        TransactionEntity updatedTransaction = transactionService.updateTransaction(transactionId, transaction);
-        if (updatedTransaction != null) {
-            return ResponseEntity.ok(updatedTransaction);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return transactionService.updateTransaction(transactionId, transaction);
+
     }
 
     // Delete a transaction by transactionId
     @DeleteMapping("/delete/{transactionId}")
-    public ResponseEntity<Void> deleteTransaction(@PathVariable String transactionId) {
-        boolean deleted = transactionService.deleteTransaction(transactionId);
-        if (deleted) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public boolean deleteTransaction(@PathVariable String transactionId) {
+        logger.info("Deleting Transaction with ID "+transactionId);
+        return transactionService.deleteTransaction(transactionId);
     }
 
 }

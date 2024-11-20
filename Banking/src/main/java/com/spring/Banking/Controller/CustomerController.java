@@ -42,7 +42,7 @@ public class CustomerController {
 		return customerService.createCustomer(customer);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/{customerId}")
 	public CustomerEntity updateCustomer(@RequestBody CustomerEntity customer, @PathVariable String customerId){
 		logger.info("Customer with id {} updated with new details as {}", customerId, customer);
 		return customerService.updateCustomer(customerId, customer);

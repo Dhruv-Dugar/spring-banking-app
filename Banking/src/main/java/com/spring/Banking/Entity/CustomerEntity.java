@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 )
 public class CustomerEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="customer-id")
 	private String customerId;
 
