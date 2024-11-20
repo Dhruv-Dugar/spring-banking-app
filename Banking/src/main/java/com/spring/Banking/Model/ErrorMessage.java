@@ -1,4 +1,4 @@
-package com.spring.Banking.Entity;
+package com.spring.Banking.Model;
 
 import org.springframework.http.HttpStatus;
 
